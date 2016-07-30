@@ -24,8 +24,16 @@ this.isBuilding = true; //ignore
 	this.maxWeaponPayload = 9999999;
 
 	this.children = new Array(); //saved as boolean in stat files
+/* 
+common:
+cost,height,isThreat,max,maxHeal?th,repairable,size,spread,title,w?idth
+special:
+children,isHQ,isSatellite,miner,?power,powerMargin,refinery,revenu?e,revenueCount,rotatable
+weapon:
+...WIP
+*/
 
-
+	
 //all
 this.altitude = 0;
 this.children = new Array();
