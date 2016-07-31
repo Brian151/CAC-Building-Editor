@@ -1,53 +1,43 @@
 {
 	"statList":[
 		{
-			"id":"carriable",
-			"type":"boolean",
-			"docu":"determines if the unit can be picked-up by carriers",
-			"optLim":true,
-			"displayForm":["false","true"],
-			"mapAS":["false","true"],
-			"mapINI":["0","1"],
-			"mapForm":["0","1"],
-			"default":{"AS":"false","INI":"0","FORM":"0"},
-			"tab":"common"
-		},
-		{
-			"id":"obstruct",
-			"type":"boolean",
-			"docu":"determines if the unit is inpassable",
-			"optLim":true,
-			"displayForm":["false","true"],
-			"mapAS":["false","true"],
-			"mapINI":["0","1"],
-			"mapForm":["0","1"],
-			"default":{"AS":"false","INI":"0","FORM":"0"},
-			"tab":"common"
-		},
-		{
 			"id":"cost",
 			"type":"number",
 			"docu":"self-explanatory",
+			"optLim":false,
 			"mapAS":["@OVR_NUM"],
-			"mapINI":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM",
 			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"200","INI":"200","FORM":"200"},
+			"default":{"AS":"1000","INI":"1000","FORM":"1000"},
 			"tab":"common"
 		},
 		{
-			"id":"maxHealth",
-			"type":"number",
-			"docu":"the max health as well as the default starting health",
-			"mapAS":["@OVR_NUM"],
-			"mapINI":["@OVR_NUM"],
-			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"50","INI":"50","FORM":"50"},
-			"tab":"common"
-		},
-		{
-			"id":"speed",
+			"id":"height",
 			"type":"number",
 			"docu":"self-explanatory",
+			"optLim":false,
+			"mapAS":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM"],
+			"mapForm":["@OVR_NUM"],
+			"default":{"AS":"2","INI":"2","FORM":"2"},
+			"tab":"common"
+		},
+		{
+			"id":"isThreat",
+			"type":"boolean",
+			"docu":"self-explanatory",
+			"optLim":true,
+			"displayForm":["false","true"],
+			"mapAS":["false","true"],
+			"mapINI":["0","1"],
+			"mapForm":["0","1"],
+			"default":{"AS":"true","INI":"1","FORM":"1"},
+			"tab":"common"
+		},
+		{
+			"id":"max",
+			"type":"number",
+			"docu":"the max that can be built",
 			"mapAS":["@OVR_NUM"],
 			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
@@ -55,105 +45,42 @@
 			"tab":"common"
 		},
 		{
-			"id":"flying",
-			"type":"boolean",
-			"docu":"determines if a unit can fly",
-			"optLim":true,
-			"displayForm":["false","true"],
-			"mapAS":["false","true"],
-			"mapINI":["0","1"],
-			"mapForm":["0","1"],
-			"default":{"AS":"false","INI":"0","FORM":"0"},
-			"tab":"common"
-		},
-		{
-			"id":"lander",
-			"type":"boolean",
-			"docu":"determines if a flying unit can land",
-			"optLim":true,
-			"displayForm":["false","true"],
-			"mapAS":["false","true"],
-			"mapINI":["0","1"],
-			"mapForm":["0","1"],
-			"default":{"AS":"false","INI":"0","FORM":"0"},
-			"tab":"common"
-		},
-		{
-			"id":"altitude",
+			"id":"maxHealth",
 			"type":"number",
-			"docu":"how high a flying unit can fly",
+			"docu":"max value for health, as well as its default value",
 			"mapAS":["@OVR_NUM"],
 			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"0","INI":"0","FORM":"0"},
+			"default":{"AS":"1000","INI":"1000","FORM":"1000"},
 			"tab":"common"
 		},
 		{
-			"id":"home",
-			"type":"other",
-			"docu":"where this unit should be spawned from",
-			"mapAS":["@OVR_STR"],
-			"mapINI":["@OVR_DEFAULT"],
-			"mapForm":["@OVR_DEFAULT"],
-			"default":{"AS":"\"BA_\"","INI":"BA_","FORM":"BA_"},
-			"tab":"common"
-		},
-		{
-			"id":"max",
+			"id":"power",
 			"type":"number",
-			"docu":"how many total of this unit can be constructed",
+			"docu":"stop wasting electricity!",
+			"optLim":false,
 			"mapAS":["@OVR_NUM"],
 			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"5","INI":"5","FORM":"5"},
+			"default":{"AS":"-16","INI":"-16","FORM":"-16"},
+			"comment":"default value determined from average of non-zero values in vanilla CAC, then rounded",
 			"tab":"common"
 		},
 		{
-			"id":"reaction",
+			"id":"powerMargin",
 			"type":"number",
-			"docu":"a timer of some sort???",
+			"docu":"determines how far from base power-consuming buildings may be built",
+			"optLim":false,
 			"mapAS":["@OVR_NUM"],
 			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"100","INI":"100","FORM":"100"},
-			"tab":"common"
-		},
-		{
-			"id":"threat",
-			"type":"number",
-			"docu":"threat level (used for AI priority and targeting)",
-			"mapAS":["@OVR_NUM"],
-			"mapINI":["@OVR_NUM"],
-			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"0","INI":"0","FORM":"0"},
-			"tab":"common"
-		},
-		{
-			"id":"vibrate",
-			"type":"number",
-			"docu":"the rate at which some units ocsillate (shake-around)",
-			"mapAS":["@OVR_NUM"],
-			"mapINI":["@OVR_NUM"],
-			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"0","INI":"0","FORM":"0"},
-			"tab":"common"
-		},
-		{
-			"id":"repair",
-			"type":"boolean",
-			"docu":"determines if this unit can repair damaged units and buildings",
-			"optLim":true,
-			"displayForm":["false","true"],
-			"mapAS":["false","true"],
-			"mapINI":["0","1"],
-			"mapForm":["0","1"],
-			"default":{"AS":"false","INI":"0","FORM":"0"},
+			"default":{"AS":"2","INI":"2","FORM":"2"},
 			"tab":"common"
 		},
 		{
 			"id":"repairable",
 			"type":"boolean",
-			"docu":"determines if this unit can be repaired",
+			"docu":"self-explanatory",
 			"optLim":true,
 			"displayForm":["false","true"],
 			"mapAS":["false","true"],
@@ -165,12 +92,86 @@
 		{
 			"id":"size",
 			"type":"number",
+			"docu":"visual aspect, also used for collisions",
+			"mapAS":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM"],
+			"mapForm":["@OVR_NUM"],
+			"default":{"AS":"100","INI":"100","FORM":"100"},
+			"tab":"common"
+		},
+		{
+			"id":"spread",
+			"type":"number",
+			"docu":"how far to push-back the shroud",
+			"mapAS":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM"],
+			"mapForm":["@OVR_NUM"],
+			"default":{"AS":"2","INI":"2","FORM":"2"},
+			"tab":"common"
+		},
+		{
+			"id":"width",
+			"type":"number",
+			"docu":"self-explanatory",
+			"mapAS":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM"],
+			"mapForm":["@OVR_NUM"],
+			"default":{"AS":"2","INI":"2","FORM":"2"},
+			"tab":"common"
+		},
+		{
+			"id":"threat",
+			"type":"number",
+			"docu":"threat level (used for AI priority and targeting)",
+			"mapAS":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM"],
+			"mapForm":["@OVR_NUM"],
+			"default":{"AS":"0","INI":"0","FORM":"0"},
+			"tab":"special"
+		},
+		{
+			"id":"vibrate",
+			"type":"number",
+			"docu":"the rate at which some units ocsillate (shake-around)",
+			"mapAS":["@OVR_NUM"],
+			"mapINI":["@OVR_NUM"],
+			"mapForm":["@OVR_NUM"],
+			"default":{"AS":"0","INI":"0","FORM":"0"},
+			"tab":"special"
+		},
+		{
+			"id":"repair",
+			"type":"boolean",
+			"docu":"determines if this unit can repair damaged units and buildings",
+			"optLim":true,
+			"displayForm":["false","true"],
+			"mapAS":["false","true"],
+			"mapINI":["0","1"],
+			"mapForm":["0","1"],
+			"default":{"AS":"false","INI":"0","FORM":"0"},
+			"tab":"special"
+		},
+		{
+			"id":"repairable",
+			"type":"boolean",
+			"docu":"determines if this unit can be repaired",
+			"optLim":true,
+			"displayForm":["false","true"],
+			"mapAS":["false","true"],
+			"mapINI":["0","1"],
+			"mapForm":["0","1"],
+			"default":{"AS":"true","INI":"1","FORM":"1"},
+			"tab":"special"
+		},
+		{
+			"id":"size",
+			"type":"number",
 			"docu":"visual aspect (also plays a role in collision detection)",
 			"mapAS":["@OVR_NUM"],
 			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
 			"default":{"AS":"10","INI":"10","FORM":"10"},
-			"tab":"common"
+			"tab":"special"
 		},
 		{
 			"id":"spread",
@@ -180,7 +181,7 @@
 			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
 			"default":{"AS":"0","INI":"0","FORM":"0"},
-			"tab":"common"
+			"tab":"special"
 		},
 		{
 			"id":"boomerang",

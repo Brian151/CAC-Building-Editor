@@ -13,7 +13,7 @@ this.isBuilding = true; //ignore
 	this.weapon = false;
 	this.maxWeaponCharge = 0;
 	this.powerMargin = 2;
-	this.altitude = 0;
+	this.altitude = 0; //omit
 	this.size = 0;
 	this.repairable = true;
 	this.rotatable = false;
@@ -26,11 +26,11 @@ this.isBuilding = true; //ignore
 	this.children = new Array(); //saved as boolean in stat files
 /* 
 common:
-cost,height,isThreat,max,maxHeal?th,repairable,size,spread,title,w?idth
+cost,height,isThreat,max,maxHealth,power,powerMargin,repairable,size,spread,title,width
 special:
-children,isHQ,isSatellite,miner,?power,powerMargin,refinery,revenu?e,revenueCount,rotatable
+children,isHQ,isSatellite,miner,refinery,revenue,revenueCount,rotatable
 weapon:
-...WIP
+maxWeaponCharge,maxWeaponPayload,weapon,weaponRange
 */
 
 	
