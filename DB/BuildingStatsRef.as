@@ -28,7 +28,7 @@ this.isBuilding = true; //ignore
 common:
 cost,height,isThreat,max,maxHealth,power,powerMargin,repairable,size,spread,title,width
 special:
-children,isHQ,isSatellite,miner,refinery,revenue,revenueCount,rotatable
+children,isHQ,isSatellite,miner(purged),refinery,revenue,revenueCount,rotatable
 weapon:
 maxWeaponCharge,maxWeaponPayload,weapon,weaponRange
 */
