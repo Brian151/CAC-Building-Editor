@@ -6,7 +6,7 @@
 			"docu":"self-explanatory",
 			"optLim":false,
 			"mapAS":["@OVR_NUM"],
-			"mapINI":["@OVR_NUM",
+			"mapINI":["@OVR_NUM"],
 			"mapForm":["@OVR_NUM"],
 			"default":{"AS":"1000","INI":"1000","FORM":"1000"},
 			"tab":"common"
