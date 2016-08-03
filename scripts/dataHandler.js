@@ -105,7 +105,7 @@ var output = input;
 	for (var i=0; i < input.length; i++){
 		var curr = input[i];
 		for (var i2=0; i2 < db.statList.length; i2++) {
-			var curr2 = db.statList[i];
+			var curr2 = db.statList[i2];
 			if (curr2.id == curr.id) {
 				var curr3 = curr2["map" + format];
 				if (curr.value != curr2["default"][compat[format]]) {
