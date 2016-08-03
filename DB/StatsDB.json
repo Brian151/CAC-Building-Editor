@@ -122,11 +122,11 @@
 		{
 			"id":"children",
 			"type":"array",
-			"docu":"units to spawn on death (WIP!)",
-			"mapAS":["@OVR_NUM"],
-			"mapINI":["@OVR_NUM"],
-			"mapForm":["@OVR_NUM"],
-			"default":{"AS":"0","INI":"0","FORM":"0"},
+			"docu":"units to spawn on death",
+			"mapAS":["@OVR_ASCODE"],
+			"mapINI":["@OVR_CAMM_ARRAY"],
+			"mapForm":["@OVR_STR_ARRAY"],
+			"default":{"AS":"","INI":"","FORM":""},
 			"tab":"special"
 		},
 		{

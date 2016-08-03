@@ -115,8 +115,53 @@ var output = input;
 							break;
 						}
 						case "@OVR_STR" : {
-							output.value = "\"" + output[i].value + "\"";
+							output[i].value = "\"" + output[i].value + "\"";
 							break;
+						}
+						case "@OVR_ASCODE" : {
+							output[i].value = "@ERR_CANNOT_RECOVER_DATA";
+							break;
+						}
+						case "@OVR_CAMM_ARRAY" : {
+							console.log("test! [CAMM ARRAY]");
+							var theData = output[i].value.replace("{","");
+							theData = theData.replace("}","");
+							var ar = theData.split("|");
+							if (mode == "AS") {
+								for (var i4 = 0; i4 < ar.length; i4++) {
+									ar[i4] = "\tthis.children.push(\"" + ar[i4] + "\" + this.type.substr(3));";
+								}
+								var arAS = ar.join("\n") + "\n";
+								console.log(arAS);
+								output[i].value = arAS;
+							} else if (mode == "Form") {
+								arForm = ar.join(",");
+								output[i].value = arForm;
+								console.log(arForm);
+							}
+							console.log("out : " + output[i].value);
+							break;
+						}
+						case "@OVR_STR_ARRAY" : {
+							//console.log("DEBUG MULTI-RUN: STRING ARRAY");
+							var ar = output[i].value.split(",");
+							if (mode == "INI") {
+								var arINI = "{" + ar.join("|") + "}";
+								//console.log(arINI);
+								output[i].value = arINI;
+								break;
+							} else if (mode == "AS") {
+								//this.children.push("UA_"+this.type.substr(3)); //ref
+								for (var i4 = 0; i4 < ar.length; i4++) {
+									ar[i4] = "\tthis.children.push(\"" + ar[i4] + "\" + this.type.substr(3));";
+								}
+								var arAS = ar.join("\n") + "\n";
+								console.log(arAS);
+								output[i].value = arAS;
+								output[i].preFabbed = true;
+								break;
+							}
+							
 						}
 						default : {
 							for (var i3=0; i3 < curr3.length; i3++) {
@@ -131,6 +176,12 @@ var output = input;
 				} else {
 					output[i].disabled = true;
 				}
+				break;
+				/*
+				and somehow it takes adding an 'array' type of stat 
+				for the lack of this break statement to break the program... 
+				ok... /:
+				*/
 			}
 		}
 	}
@@ -174,7 +225,7 @@ function getStatData() {
 			var currK = data[1][i];
 			var currV = data[2][i];
 			dump.push({"id":currK,"value":currV});
-			//console.log("yes key!");
+			console.log("key , value : " + currK + " " + currV);
 		}
 		dump = houseCleaner(dump,"Form","INI");
 		//console.log(JSON.stringify(dump));
@@ -210,7 +261,9 @@ function dumpStatData(internal,wholeFile){
 	var ascomtxt = document.getElementById("ascomtxt");
 	var dump = getFormInputs();
 	//alert("hi");
-	dump = houseCleaner(dump,mode,"Form");
+	//console.log("dumping stat data");
+	if (!internal) {dump = houseCleaner(dump,mode,"Form");} else {dump = houseCleaner(dump,"INI","Form");}
+	//console.log("finished!");
 	//console.log(JSON.stringify(dump));
 	//alert("break");
 	var ID = IDtxt.value;
@@ -233,8 +286,10 @@ function dumpStatData(internal,wholeFile){
 			out += "if ((this.type==\"" + ID + "_good\") || (this.type==\"" + ID + "_evil\")){\n";
 			out += "//" + asComment + "\n";
 			for (var i=0; i < dump.length; i++){
-				if (!dump[i].disabled) {
+				if (!dump[i].disabled && !dump[i].preFabbed) {
 				out += "\tthis." + dump[i].id + " = " + dump[i].value + ";\n"
+				} else if (dump[i].preFabbed) {
+					out += dump[i].value;
 				}
 			}
 			out += "}"
@@ -254,8 +309,10 @@ function dumpStatData(internal,wholeFile){
 				}
 				out += "if ((this.type==\"" + ID + "_good\") || (this.type==\"" + ID + "_evil\")){\n";
 				for (var i3=0; i3 < dump.length; i3++) {
-					if (!dump[i3].disabled) {
-					out += "\tthis." + dump[i3].id + " = " + dump[i3].value + ";\n"
+					if (!dump[i].disabled && !dump[i].preFabbed) {
+						out += "\tthis." + dump[i].id + " = " + dump[i].value + ";\n"
+					} else if (dump[i].preFabbed) {
+						out += dump[i].value;
 					}
 				}
 				out += "}"
