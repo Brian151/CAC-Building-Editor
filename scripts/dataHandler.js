@@ -123,7 +123,7 @@ var output = input;
 							break;
 						}
 						case "@OVR_CAMM_ARRAY" : {
-							console.log("test! [CAMM ARRAY]");
+							//console.log("test! [CAMM ARRAY]");
 							var theData = output[i].value.replace("{","");
 							theData = theData.replace("}","");
 							var ar = theData.split("|");
@@ -132,14 +132,14 @@ var output = input;
 									ar[i4] = "\tthis.children.push(\"" + ar[i4] + "\" + this.type.substr(3));";
 								}
 								var arAS = ar.join("\n") + "\n";
-								console.log(arAS);
+								//console.log(arAS);
 								output[i].value = arAS;
 							} else if (mode == "Form") {
 								arForm = ar.join(",");
 								output[i].value = arForm;
-								console.log(arForm);
+								//console.log(arForm);
 							}
-							console.log("out : " + output[i].value);
+							//console.log("out : " + output[i].value);
 							break;
 						}
 						case "@OVR_STR_ARRAY" : {
@@ -156,12 +156,30 @@ var output = input;
 									ar[i4] = "\tthis.children.push(\"" + ar[i4] + "\" + this.type.substr(3));";
 								}
 								var arAS = ar.join("\n") + "\n";
-								console.log(arAS);
+								//console.log(arAS);
 								output[i].value = arAS;
 								output[i].preFabbed = true;
 								break;
 							}
 							
+						}
+						case "@OVR_UH" : {
+							//this.parent.parent.findBuilding("BC_"+this.team, this.parent.team);
+							if (format == "Form") {
+								if (mode == "INI") {
+									//nothing needs done
+								} else if (mode == "AS") {
+									output[i].value = "\tthis.parent.parent.findBuilding(\"" + output[i].value + "\" + this.team, this.parent.team);\n";
+									output[i].preFabbed = true;
+								}
+							} else if (format == "INI") {
+								if (mode == "Form") {
+									//nothing needs done
+								} else if (mode == "AS") {
+									output[i].value = "\tthis.parent.parent.findBuilding(\"" + output[i].value + "\" + this.team, this.parent.team);\n";
+									output[i].preFabbed = true;
+								}
+							}
 						}
 						default : {
 							for (var i3=0; i3 < curr3.length; i3++) {
@@ -225,7 +243,7 @@ function getStatData() {
 			var currK = data[1][i];
 			var currV = data[2][i];
 			dump.push({"id":currK,"value":currV});
-			console.log("key , value : " + currK + " " + currV);
+			//console.log("key , value : " + currK + " " + currV);
 		}
 		dump = houseCleaner(dump,"Form","INI");
 		//console.log(JSON.stringify(dump));
@@ -309,10 +327,10 @@ function dumpStatData(internal,wholeFile){
 				}
 				out += "if ((this.type==\"" + ID + "_good\") || (this.type==\"" + ID + "_evil\")){\n";
 				for (var i3=0; i3 < dump.length; i3++) {
-					if (!dump[i].disabled && !dump[i].preFabbed) {
-						out += "\tthis." + dump[i].id + " = " + dump[i].value + ";\n"
-					} else if (dump[i].preFabbed) {
-						out += dump[i].value;
+					if (!dump[i3].disabled && !dump[i3].preFabbed) {
+						out += "\tthis." + dump[i3].id + " = " + dump[i3].value + ";\n"
+					} else if (dump[i3].preFabbed) {
+						out += dump[i3].value;
 					}
 				}
 				out += "}"
@@ -326,7 +344,7 @@ function dumpStatData(internal,wholeFile){
 			out += ";" + asComment + "\n";
 			for (var i=0; i < dump.length; i++){
 				if (!dump[i].disabled) {
-					out += dump[i].id + "=" + dump[i].value + ";\n";
+					out += dump[i].id + "=" + dump[i].value + "\n";
 				}
 			}
 		} else {
